@@ -51,8 +51,31 @@ def quiz_mode(operator=operator,operand=first_operand):
             print(f"{missed_problems[index]['problem']}, ✅ {missed_problems[index]['answer']},⛔️{missed_problems[index]['user_answer']} ")
            
 
-def endless_mode(operator=operator):
-    pass
+def endless_mode(operator=operator, first_operand=first_operand):
+    new_question = {}
+    is_game_on = True
+    curr_question = 1
+    score = 0
+    while is_game_on:
+        second_operand = random.randint(2,14)
+        if operator == '1':       
+            new_question['problem'] =  f"{first_operand} * {second_operand}" 
+            new_question['answer'] = int(first_operand)*second_operand            
+        elif operator == '2':            
+            new_question['problem'] =  f"{first_operand} / {second_operand}" 
+            new_question['answer'] = int(first_operand)/second_operand
+  
+        user_answer = int(input(f"Q{curr_question}: {new_question['problem']}= ?"))
+        
+        if new_question['answer'] == user_answer:
+            score += 1
+            curr_question +=1
+            
+        else:
+            is_game_on = False
+            print(f"End of game. You answered a total of  {curr_question} math problems")
+            
+            
 
 
 if game_mode == '1':
